@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @JsonInclude
 public class ProdutoRequest {
 
-    private Long id;
+    //private Long id;
 
     private String nome;
 
@@ -32,4 +32,7 @@ public class ProdutoRequest {
     private String codigoBarra;
 
     private String referencia;
+
+    private CategoriaRequest categoria;
+
 }

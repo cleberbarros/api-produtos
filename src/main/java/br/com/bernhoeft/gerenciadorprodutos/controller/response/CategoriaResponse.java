@@ -27,5 +27,5 @@ public class CategoriaResponse {
 
     private SituacaoEnum situacao;
 
-    private List<Produto> produtos = new ArrayList<>();
+    //private List<Produto> produtos = new ArrayList<>();
 }

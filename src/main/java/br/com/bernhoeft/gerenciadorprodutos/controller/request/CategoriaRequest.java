@@ -17,10 +17,11 @@ import javax.validation.constraints.NotEmpty;
 @JsonInclude
 public class CategoriaRequest {
 
+    private Long id;
+
     @NotEmpty(message = "Por favor informe um nome para a categoria")
     private String nome;
 
-    @NotNull
     private SituacaoEnum situacao;
 
 }

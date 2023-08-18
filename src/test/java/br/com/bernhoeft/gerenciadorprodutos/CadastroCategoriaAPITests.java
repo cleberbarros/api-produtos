@@ -2,29 +2,14 @@ package br.com.bernhoeft.gerenciadorprodutos;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import javax.transaction.Transactional;
-
-
-//builders
-import org.json.JSONException;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.skyscreamer.jsonassert.JSONAssert;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-
-import java.util.Optional;
-
-import static io.restassured.RestAssured.given;
-import static org.mockito.Mockito.when;
 
 
 @SpringJUnitConfig

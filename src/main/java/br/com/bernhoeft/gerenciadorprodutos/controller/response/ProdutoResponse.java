@@ -1,6 +1,5 @@
 package br.com.bernhoeft.gerenciadorprodutos.controller.response;
 
-import br.com.bernhoeft.gerenciadorprodutos.model.Categoria;
 import br.com.bernhoeft.gerenciadorprodutos.model.enums.SituacaoEnum;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
@@ -34,6 +33,6 @@ public class ProdutoResponse {
 
     private String referencia;
 
-    private Categoria categoria;
+    private CategoriaResponse categoria;
 
 }
