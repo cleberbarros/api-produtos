@@ -29,8 +29,7 @@ public class CategoriaController {
 
     @PostMapping("criar")
     public ResponseEntity criar(@RequestBody @Valid CategoriaRequest categoriaRequest){
-       this.categoriaService.criar(categoriaRequest);
-       return new ResponseEntity<>(HttpStatus.OK);
+       return ResponseEntity.ok(this.categoriaService.criar(categoriaRequest));
     }
 
     @PutMapping("alterar/{idCategoria}")

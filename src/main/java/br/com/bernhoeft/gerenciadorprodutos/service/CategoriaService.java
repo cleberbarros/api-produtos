@@ -26,8 +26,9 @@ public class CategoriaService {
 
     private final ModelMapper modelMapper;
 
-    public void criar(CategoriaRequest categoriaRequest) {
-       this.categoriaRepository.save(modelMapper.map(categoriaRequest, Categoria.class));
+    public CategoriaResponse criar(CategoriaRequest categoriaRequest) {
+       Categoria categoriaSalva = this.categoriaRepository.save(modelMapper.map(categoriaRequest, Categoria.class));
+       return modelMapper.map(categoriaSalva, CategoriaResponse.class);
     }
 
     public List<CategoriaResponse> listarPorNome(String nome) {
