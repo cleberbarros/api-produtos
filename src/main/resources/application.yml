@@ -8,7 +8,8 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: create
+      #ddl-auto: create
+      ddl-auto: update
 server:
   servlet:
     contextPath: /api-produtos/

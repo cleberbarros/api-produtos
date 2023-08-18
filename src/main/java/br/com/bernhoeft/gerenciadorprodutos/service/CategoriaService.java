@@ -3,12 +3,17 @@ package br.com.bernhoeft.gerenciadorprodutos.service;
 import br.com.bernhoeft.gerenciadorprodutos.controller.request.CategoriaRequest;
 import br.com.bernhoeft.gerenciadorprodutos.controller.response.CategoriaResponse;
 import br.com.bernhoeft.gerenciadorprodutos.model.Categoria;
+import br.com.bernhoeft.gerenciadorprodutos.model.enums.SituacaoEnum;
 import br.com.bernhoeft.gerenciadorprodutos.repository.CategoriaRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Type;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,16 +25,19 @@ public class CategoriaService {
     private final ModelMapper modelMapper;
 
     public void criar(CategoriaRequest categoriaRequest) {
-        //Categoria categoria = modelMapper.map(categoriaRequest, Categoria.class);
-
-        Categoria categoria = new Categoria();
-                categoria.setNome(categoriaRequest.getNome());
-                categoria.setSituacao(categoriaRequest.getSituacao());
-        categoriaRepository.save(categoria);
+       this.categoriaRepository.save(modelMapper.map(categoriaRequest, Categoria.class));
     }
 
-    public CategoriaResponse toModel(Categoria categoria){
-        return modelMapper.map(categoria,CategoriaResponse.class);
+    public List<CategoriaResponse> listarPorNome(String nome) {
+        return categoriaRepository.findByNomeIgnoreCaseContaining(nome).stream()
+                .map(categoria -> toModel(categoria))
+                .collect(Collectors.toList());
+    }
+
+    public List<CategoriaResponse> listarPorSituacao(SituacaoEnum situacao) {
+        return categoriaRepository.findBySituacao(situacao).stream()
+                .map(categoria -> toModel(categoria))
+                .collect(Collectors.toList());
     }
 
     public List<CategoriaResponse> listar(){
@@ -37,4 +45,22 @@ public class CategoriaService {
                 .map(categoria -> toModel(categoria))
                 .collect(Collectors.toList());
     }
+    public CategoriaResponse toModel(Categoria categoria){
+        return modelMapper.map(categoria,CategoriaResponse.class);
+    }
+
+
+    public CategoriaResponse alterar(Long id, CategoriaRequest categoriaRequest) {
+        Optional<Categoria> categoriaOptional = categoriaRepository.findById(id);
+
+        if (categoriaOptional.isPresent()) {
+            Categoria categoriaEncontrada = categoriaOptional.get();
+            modelMapper.map(categoriaRequest, categoriaEncontrada);
+            categoriaRepository.save(categoriaEncontrada);
+
+            return modelMapper.map(categoriaEncontrada, CategoriaResponse.class);
+        }
+        return null;
+    }
+
 }
