@@ -2,6 +2,7 @@ package br.com.bernhoeft.gerenciadorprodutos.controller.request;
 
 import br.com.bernhoeft.gerenciadorprodutos.model.enums.SituacaoEnum;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +20,7 @@ public class CategoriaRequest {
     @NotEmpty(message = "Por favor informe um nome para a categoria")
     private String nome;
 
-    @NotEmpty(message = "Por favor informe a situação ATIVO/INATIVO")
+    @NotNull
     private SituacaoEnum situacao;
 
 }
