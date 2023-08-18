@@ -1,7 +1,6 @@
 package br.com.bernhoeft.gerenciadorprodutos.model;
 
 import br.com.bernhoeft.gerenciadorprodutos.model.enums.SituacaoEnum;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

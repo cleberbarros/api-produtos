@@ -2,6 +2,8 @@ package br.com.bernhoeft.gerenciadorprodutos.service;
 
 import br.com.bernhoeft.gerenciadorprodutos.controller.request.CategoriaRequest;
 import br.com.bernhoeft.gerenciadorprodutos.controller.response.CategoriaResponse;
+import br.com.bernhoeft.gerenciadorprodutos.exception.CategoriaNaoEncontradaException;
+import br.com.bernhoeft.gerenciadorprodutos.exception.EntidadeNaoEncontradaException;
 import br.com.bernhoeft.gerenciadorprodutos.model.Categoria;
 import br.com.bernhoeft.gerenciadorprodutos.model.enums.SituacaoEnum;
 import br.com.bernhoeft.gerenciadorprodutos.repository.CategoriaRepository;
@@ -49,18 +51,18 @@ public class CategoriaService {
         return modelMapper.map(categoria,CategoriaResponse.class);
     }
 
+public CategoriaResponse alterar(Categoria categoriaEncontrada, CategoriaRequest categoriaRequest) {
 
-    public CategoriaResponse alterar(Long id, CategoriaRequest categoriaRequest) {
-        Optional<Categoria> categoriaOptional = categoriaRepository.findById(id);
+        modelMapper.map(categoriaRequest, categoriaEncontrada);
+        categoriaRepository.save(categoriaEncontrada);
 
-        if (categoriaOptional.isPresent()) {
-            Categoria categoriaEncontrada = categoriaOptional.get();
-            modelMapper.map(categoriaRequest, categoriaEncontrada);
-            categoriaRepository.save(categoriaEncontrada);
+        return modelMapper.map(categoriaEncontrada, CategoriaResponse.class);
+  }
 
-            return modelMapper.map(categoriaEncontrada, CategoriaResponse.class);
-        }
-        return null;
+
+    public Categoria buscar(Long id){
+        return categoriaRepository.findById(id)
+                .orElseThrow(()-> new CategoriaNaoEncontradaException(id));
     }
 
 }

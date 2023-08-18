@@ -2,6 +2,7 @@ package br.com.bernhoeft.gerenciadorprodutos.controller;
 
 import br.com.bernhoeft.gerenciadorprodutos.controller.request.CategoriaRequest;
 import br.com.bernhoeft.gerenciadorprodutos.controller.response.CategoriaResponse;
+import br.com.bernhoeft.gerenciadorprodutos.model.Categoria;
 import br.com.bernhoeft.gerenciadorprodutos.model.enums.SituacaoEnum;
 import br.com.bernhoeft.gerenciadorprodutos.service.CategoriaService;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 import java.util.List;
 
 @RestController
@@ -25,15 +28,16 @@ public class CategoriaController {
     private final CategoriaService categoriaService;
 
     @PostMapping("criar")
-    public ResponseEntity criar(@RequestBody CategoriaRequest categoriaRequest){
+    public ResponseEntity criar(@RequestBody @Valid CategoriaRequest categoriaRequest){
        this.categoriaService.criar(categoriaRequest);
        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping("alterar/{idCategoria}")
-    public ResponseEntity<CategoriaResponse> alterar(@PathVariable Long idCategoria, @RequestBody CategoriaRequest categoriaRequest){
-        CategoriaResponse categoriaAlterada = categoriaService.alterar(idCategoria, categoriaRequest);
-        return categoriaAlterada != null ? ResponseEntity.ok(categoriaAlterada) : ResponseEntity.notFound().build();
+    public CategoriaResponse alterar(@PathVariable Long idCategoria, @RequestBody CategoriaRequest categoriaRequest){
+        Categoria categoriaAtual = categoriaService.buscar(idCategoria);
+
+        return categoriaService.alterar(categoriaAtual,categoriaRequest);
 
     }
 
