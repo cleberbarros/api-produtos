@@ -2,19 +2,20 @@ package br.com.bernhoeft.gerenciadorprodutos;
 
 import br.com.bernhoeft.gerenciadorprodutos.controller.request.CategoriaRequest;
 import br.com.bernhoeft.gerenciadorprodutos.controller.response.CategoriaResponse;
+import br.com.bernhoeft.gerenciadorprodutos.exception.CategoriaNaoEncontradaException;
 import br.com.bernhoeft.gerenciadorprodutos.model.enums.SituacaoEnum;
 import br.com.bernhoeft.gerenciadorprodutos.service.CategoriaService;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 @SpringJUnitConfig
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -50,6 +51,15 @@ class CadastroCategoriaIntegrationTests {
 			assertThat(e.getMessage()).contains("Por favor informe um nome para a categoria");
 		}
 
+	}
+
+	@Test()
+	public void testaAlterarCategoriaInexistente(){
+		Long idCategoria = 999L;
+
+		assertThatExceptionOfType(CategoriaNaoEncontradaException.class)
+				.isThrownBy(() -> categoriaService.buscar(idCategoria))
+				.withMessageContaining("Não existe um cadastro de categoria com código " + idCategoria);
 	}
 
 }
