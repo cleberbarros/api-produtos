@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -17,10 +18,11 @@ import java.time.LocalDate;
 @JsonInclude
 public class ProdutoRequest {
 
-    //private Long id;
 
+    @NotEmpty(message = "Por favor informe um nome para o Produto ")
     private String nome;
 
+    @NotEmpty(message = "Por favor informe uma descrição para o Produto ")
     private String descricao;
 
     private BigDecimal preco;

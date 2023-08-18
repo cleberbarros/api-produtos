@@ -1,0 +1,12 @@
+{
+  "nome": "Produto teste 01",
+  "descricao": "Produto para teste 01",
+  "preco": 88.80,
+  "situacao": "ATIVO",
+  "validade": "2023-12-31",
+  "codigoBarra": "123456789",
+  "referencia": "REF123",
+  "categoria": {
+    "id": 1
+  }
+}

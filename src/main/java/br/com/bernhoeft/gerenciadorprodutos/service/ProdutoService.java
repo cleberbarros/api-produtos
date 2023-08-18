@@ -1,11 +1,8 @@
 package br.com.bernhoeft.gerenciadorprodutos.service;
 
-import br.com.bernhoeft.gerenciadorprodutos.controller.request.CategoriaRequest;
 import br.com.bernhoeft.gerenciadorprodutos.controller.request.ProdutoRequest;
-import br.com.bernhoeft.gerenciadorprodutos.controller.response.CategoriaResponse;
 import br.com.bernhoeft.gerenciadorprodutos.controller.response.ProdutoResponse;
 import br.com.bernhoeft.gerenciadorprodutos.exception.ProdutoNaoEncontradaException;
-import br.com.bernhoeft.gerenciadorprodutos.model.Categoria;
 import br.com.bernhoeft.gerenciadorprodutos.model.Produto;
 import br.com.bernhoeft.gerenciadorprodutos.model.enums.SituacaoEnum;
 import br.com.bernhoeft.gerenciadorprodutos.repository.ProdutoRepository;
