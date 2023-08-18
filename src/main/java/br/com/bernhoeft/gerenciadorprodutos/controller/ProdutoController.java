@@ -33,12 +33,10 @@ public class ProdutoController {
         return ResponseEntity.ok(this.produtoService.criar(produtoRequest));
     }
 
-    @PutMapping("alterar/{idProduto}")
-    public ProdutoResponse alterar(@PathVariable Long idProduto, @RequestBody ProdutoRequest produtoRequest){
-        Produto produtoAtual = produtoService.buscar(idProduto);
-
+    @PutMapping("alterar")
+    public ProdutoResponse alterar(@RequestBody ProdutoRequest produtoRequest){
+        Produto produtoAtual = produtoService.buscar(produtoRequest.getId());
         return produtoService.alterar(produtoAtual,produtoRequest);
-
     }
 
     @GetMapping("listar")

@@ -38,7 +38,7 @@ class CadastroProdutoIntegrationTests {
 				.validade(LocalDate.now().plusYears(1))
 				.codigoBarra("890009")
 				.referencia("REF008")
-				.categoria(CategoriaRequest.builder().id(1L).build())
+				.categoriaId(1L)
 				.build();
 
 		ProdutoResponse novoProduto = this.produtoService.criar(produtoRequest);
@@ -57,7 +57,7 @@ class CadastroProdutoIntegrationTests {
 				.validade(LocalDate.now().plusYears(1))
 				.codigoBarra("890009")
 				.referencia("REF008")
-				.categoria(CategoriaRequest.builder().id(1L).build())
+				.categoriaId(1L)
 				.build();
 		try {
 			produtoService.criar(produtoRequest);

@@ -6,7 +6,5 @@
   "validade": "2023-12-31",
   "codigoBarra": "123456789",
   "referencia": "REF123",
-  "categoria": {
-    "id": 1
-  }
+  "categoriaId": 1
 }

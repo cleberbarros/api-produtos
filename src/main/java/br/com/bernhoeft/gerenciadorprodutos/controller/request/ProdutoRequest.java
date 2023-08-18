@@ -18,6 +18,7 @@ import java.time.LocalDate;
 @JsonInclude
 public class ProdutoRequest {
 
+    private Long id;
 
     @NotEmpty(message = "Por favor informe um nome para o Produto ")
     private String nome;
@@ -35,6 +36,6 @@ public class ProdutoRequest {
 
     private String referencia;
 
-    private CategoriaRequest categoria;
+    private Long categoriaId;
 
 }

@@ -30,9 +30,9 @@ public class CategoriaController {
        return ResponseEntity.ok(this.categoriaService.criar(categoriaRequest));
     }
 
-    @PutMapping("alterar/{idCategoria}")
-    public CategoriaResponse alterar(@PathVariable Long idCategoria, @RequestBody CategoriaRequest categoriaRequest){
-        Categoria categoriaAtual = categoriaService.buscar(idCategoria);
+    @PutMapping("alterar")
+    public CategoriaResponse alterar(@RequestBody CategoriaRequest categoriaRequest){
+        Categoria categoriaAtual = categoriaService.buscar(categoriaRequest.getId());
 
         return categoriaService.alterar(categoriaAtual,categoriaRequest);
 
