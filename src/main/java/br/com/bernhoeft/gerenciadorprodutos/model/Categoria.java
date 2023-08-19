@@ -31,6 +31,4 @@ public class Categoria {
     @Enumerated(EnumType.STRING)
     private SituacaoEnum situacao;
 
-    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Produto> produtos = new ArrayList<>();
 }

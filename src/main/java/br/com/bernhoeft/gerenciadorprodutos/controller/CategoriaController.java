@@ -6,6 +6,7 @@ import br.com.bernhoeft.gerenciadorprodutos.model.Categoria;
 import br.com.bernhoeft.gerenciadorprodutos.model.enums.SituacaoEnum;
 import br.com.bernhoeft.gerenciadorprodutos.service.CategoriaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,8 +31,8 @@ public class CategoriaController {
        return ResponseEntity.ok(this.categoriaService.criar(categoriaRequest));
     }
 
-    @PutMapping("alterar")
-    public CategoriaResponse alterar(@RequestBody CategoriaRequest categoriaRequest){
+    @PutMapping(value = "alterar")
+    public CategoriaResponse alterar(@RequestBody @Valid CategoriaRequest categoriaRequest){
         Categoria categoriaAtual = categoriaService.buscar(categoriaRequest.getId());
 
         return categoriaService.alterar(categoriaAtual,categoriaRequest);

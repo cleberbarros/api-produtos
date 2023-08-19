@@ -47,7 +47,7 @@ public class CategoriaService {
         return modelMapper.map(categoria,CategoriaResponse.class);
     }
 
-public CategoriaResponse alterar(Categoria categoriaEncontrada, CategoriaRequest categoriaRequest) {
+    public CategoriaResponse alterar(Categoria categoriaEncontrada, CategoriaRequest categoriaRequest) {
 
         modelMapper.map(categoriaRequest, categoriaEncontrada);
         categoriaRepository.save(categoriaEncontrada);

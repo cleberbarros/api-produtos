@@ -29,14 +29,13 @@ public class ProdutoController {
     private final ProdutoService produtoService;
 
     @PostMapping("criar")
-    public ResponseEntity criar(@RequestBody @Valid ProdutoRequest produtoRequest){
+    public ResponseEntity<ProdutoResponse> criar(@RequestBody @Valid ProdutoRequest produtoRequest){
         return ResponseEntity.ok(this.produtoService.criar(produtoRequest));
     }
 
     @PutMapping("alterar")
-    public ProdutoResponse alterar(@RequestBody ProdutoRequest produtoRequest){
-        Produto produtoAtual = produtoService.buscar(produtoRequest.getId());
-        return produtoService.alterar(produtoAtual,produtoRequest);
+    public ProdutoResponse alterar(@RequestBody @Valid  ProdutoRequest produtoRequest){
+        return produtoService.alterar(produtoRequest.getId(),produtoRequest);
     }
 
     @GetMapping("listar")

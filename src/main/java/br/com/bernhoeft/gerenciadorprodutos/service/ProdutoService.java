@@ -1,6 +1,7 @@
 package br.com.bernhoeft.gerenciadorprodutos.service;
 
 import br.com.bernhoeft.gerenciadorprodutos.controller.request.ProdutoRequest;
+import br.com.bernhoeft.gerenciadorprodutos.controller.response.CategoriaResponse;
 import br.com.bernhoeft.gerenciadorprodutos.controller.response.ProdutoResponse;
 import br.com.bernhoeft.gerenciadorprodutos.exception.CategoriaNaoEncontradaException;
 import br.com.bernhoeft.gerenciadorprodutos.exception.ProdutoNaoEncontradaException;
@@ -32,8 +33,8 @@ public class ProdutoService {
     }
 
 
-    public ProdutoResponse alterar(Produto produtoEncontrada, ProdutoRequest produtoRequest) {
-
+    public ProdutoResponse alterar(Long idProduto , ProdutoRequest produtoRequest) {
+        Produto produtoEncontrada = this.buscar(idProduto);
         buscarCategoria(produtoEncontrada, produtoRequest);
         modelMapper.map(produtoRequest, produtoEncontrada);
 
