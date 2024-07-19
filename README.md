@@ -21,7 +21,7 @@ Este recurso permite o cadastro de Produtos e Categorias
 curl --location --request POST 'http://localhost:8080/api-produtos/categoria/criar' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "nome" : "Cama e Mesa",
+    "nome" : "Cama e Mesa e banho",
     "situacao" :"ATIVO"
 }'
 ```
